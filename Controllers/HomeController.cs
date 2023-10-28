@@ -16,6 +16,7 @@ public class HomeController : Controller
 
     [HttpGet("")]
     public IActionResult Index(){
+        // agregar el retorno a la vista Index
         return View("Index");
     }
 
@@ -24,6 +25,7 @@ public class HomeController : Controller
         if(ModelState.IsValid){
             HttpContext.Session.SetString("Username", newUser.Name);
             if(newUser.Location != null){
+                // modificacion en el valor enviado a la sesión
                 HttpContext.Session.SetString("Location", newUser.Location);
             } else {
                 HttpContext.Session.SetString("Location", "Undisclosed");
@@ -42,6 +44,7 @@ public class HomeController : Controller
         if(HttpContext.Session.GetString("Passcode") == null){
             GeneratePasscode();
         }
+        // retornamos la vista Generate
         return View("Generate");
     }
 
@@ -54,6 +57,7 @@ public class HomeController : Controller
     // Hint: Something isn't right here...
     [HttpPost("generate/new")]
     public IActionResult GenerateNew(){
+        // agregamos la ejecución de la función GeneratePasscode()
         GeneratePasscode();
         return RedirectToAction("Generator");
     }

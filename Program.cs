@@ -21,6 +21,7 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+// agregar UseSession
 app.UseSession();
 
 app.MapControllerRoute(
